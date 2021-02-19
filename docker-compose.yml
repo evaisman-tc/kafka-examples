@@ -82,6 +82,7 @@ services:
     depends_on:
       - kafka1
       - schema-registry
+      - zoo1
 
   # Within tucows we do not use confluent control center. instead we use akhq as an alternative.
   akhq:
@@ -155,3 +156,65 @@ services:
         EOF
 
         kafkacat -b kafka1:19092 -o beginning -G json-consumer json
+
+  avroproducer-python:
+    container_name: "avroproducer-python"
+    image: "avroproducer-python:latest"
+    build:
+      context: ./python/
+      dockerfile: Dockerfile.avroproducer
+    environment:
+      BROKERS: "kafka1:19092"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      TOPIC: "_kafkaclient-pythonexample_avro"
+    depends_on:
+      - kafka1
+      - zoo1
+      - schema-registry
+
+  avroconsumer-python:
+    container_name: "avroconsumer-python"
+    image: "avroconsumer-python:latest"
+    build:
+      context: ./python/
+      dockerfile: Dockerfile.avroconsumer
+    environment:
+      BROKERS: "kafka1:19092"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      TOPIC: "_kafkaclient-pythonexample_avro"
+      GROUP_ID: "pythonexample_avro_group"
+    depends_on:
+      - kafka1
+      - zoo1
+      - schema-registry
+
+  protobufproducer-python:
+    container_name: "protobufproducer-python"
+    image: "protobufproducer-python:latest"
+    build:
+      context: ./python/
+      dockerfile: Dockerfile.protobufproducer
+    environment:
+      BROKERS: "kafka1:19092"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      TOPIC: "_kafkaclient-pythonexample_protobuf"
+    depends_on:
+      - kafka1
+      - zoo1
+      - schema-registry
+
+  protobufconsumer-python:
+    container_name: "protobufconsumer-python"
+    image: "protobufconsumer-python:latest"
+    build:
+      context: ./python/
+      dockerfile: Dockerfile.protobufconsumer
+    environment:
+      BROKERS: "kafka1:19092"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      TOPIC: "_kafkaclient-pythonexample_protobuf"
+      GROUP_ID: "pythonexample_protobuf_group"
+    depends_on:
+      - kafka1
+      - zoo1
+      - schema-registry

@@ -53,7 +53,7 @@ def main(args):
 
   schema_str = """
     {
-        "namespace": "confluent.io.examples.serialization.avro",
+        "namespace": "io.examples.serialization.avro",
         "name": "User",
         "type": "record",
         "fields": [

@@ -1,0 +1,27 @@
+FROM python:3.8-slim-buster
+
+# dont write pyc files
+ENV PYTHONDONTWRITEBYTECODE 1
+# dont buffer to stdout/stderr
+ENV PYTHONUNBUFFERED 1
+
+ENV BROKERS="localhost:9092"
+ENV SCHEMA_REGISTRY_URL="http://localhost:8081"
+ENV TOPIC="_kafkaclient-pythonexample_avro"
+
+# set the working directory in the container
+WORKDIR /code
+
+# copy the dependencies file to the working directory
+COPY requirements.txt /code/
+
+# install dependencies
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install -r requirements.txt
+RUN rm -rf /root/.cache/pip
+
+# copy project
+COPY . /code/
+
+# command to run on container start
+CMD [ "bash", "-c", "python avro_producer.py -b ${BROKERS} -s ${SCHEMA_REGISTRY_URL} -t ${TOPIC}" ] 

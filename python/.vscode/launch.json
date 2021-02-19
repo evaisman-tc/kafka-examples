@@ -1,0 +1,72 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Avro Producer",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/avro_producer.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-b",
+        "localhost:9092",
+        "-s",
+        "http://localhost:8081",
+        "-t",
+        "_kafkaclient-pythonexample_avro"
+      ]
+    },
+    {
+      "name": "Python: Avro Consumer",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/avro_consumer.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-b",
+        "localhost:9092",
+        "-s",
+        "http://localhost:8081",
+        "-t",
+        "_kafkaclient-pythonexample_avro",
+        "-g",
+        "pythonexample_avro"
+      ]
+    },
+    {
+      "name": "Python: Protobuf Producer",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/protobuf_producer.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-b",
+        "localhost:9092",
+        "-s",
+        "http://localhost:8081",
+        "-t",
+        "_kafkaclient-pythonexample_protobuf"
+      ]
+    },
+    {
+      "name": "Python: Protobuf Consumer",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/protobuf_consumer.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-b",
+        "localhost:9092",
+        "-s",
+        "http://localhost:8081",
+        "-t",
+        "_kafkaclient-pythonexample_protobuf",
+        "-g",
+        "pythonexample_protobuf"
+      ]
+    }
+  ]
+}
