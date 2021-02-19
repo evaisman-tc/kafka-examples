@@ -1,1 +1,7 @@
 confluent-kafka
+Faker
+autopep8
+requests
+jsonschema
+protobuf
+fastavro
