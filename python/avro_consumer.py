@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Reference: https://github.com/confluentinc/confluent-kafka-python/blob/master/examples/avro_consumer.py
 #
 # This is a simple example of the DeserializingConsumer using Avro.

@@ -218,3 +218,34 @@ services:
       - kafka1
       - zoo1
       - schema-registry
+
+  jsonproducer-python:
+    container_name: "jsonproducer-python"
+    image: "jsonproducer-python:latest"
+    build:
+      context: ./python/
+      dockerfile: Dockerfile.jsonproducer
+    environment:
+      BROKERS: "kafka1:19092"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      TOPIC: "_kafkaclient-pythonexample_json"
+    depends_on:
+      - kafka1
+      - zoo1
+      - schema-registry
+
+  jsonconsumer-python:
+    container_name: "jsonconsumer-python"
+    image: "jsonconsumer-python:latest"
+    build:
+      context: ./python/
+      dockerfile: Dockerfile.jsonconsumer
+    environment:
+      BROKERS: "kafka1:19092"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      TOPIC: "_kafkaclient-pythonexample_json"
+      GROUP_ID: "pythonexample_json_group"
+    depends_on:
+      - kafka1
+      - zoo1
+      - schema-registry

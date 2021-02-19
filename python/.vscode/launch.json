@@ -67,6 +67,38 @@
         "-g",
         "pythonexample_protobuf"
       ]
-    }
+    },
+    {
+      "name": "Python: Json Producer",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/json_producer.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-b",
+        "localhost:9092",
+        "-s",
+        "http://localhost:8081",
+        "-t",
+        "_kafkaclient-pythonexample_json"
+      ]
+    },
+    {
+      "name": "Python: Json Consumer",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/json_consumer.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-b",
+        "localhost:9092",
+        "-s",
+        "http://localhost:8081",
+        "-t",
+        "_kafkaclient-pythonexample_json",
+        "-g",
+        "pythonexample_json"
+      ]
+    },
   ]
 }
