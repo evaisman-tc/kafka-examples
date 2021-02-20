@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.tucows;
+package com.tucows.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Movie extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4895728190317426305L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Movie\",\"namespace\":\"com.tucows\",\"fields\":[{\"name\":\"title\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"year\",\"type\":\"int\"}]}");
+  private static final long serialVersionUID = -4020126891059677260L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Movie\",\"namespace\":\"com.tucows.avro\",\"fields\":[{\"name\":\"title\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"year\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -150,8 +150,8 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Creates a new Movie RecordBuilder.
    * @return A new Movie RecordBuilder
    */
-  public static com.tucows.Movie.Builder newBuilder() {
-    return new com.tucows.Movie.Builder();
+  public static com.tucows.avro.Movie.Builder newBuilder() {
+    return new com.tucows.avro.Movie.Builder();
   }
 
   /**
@@ -159,11 +159,11 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * @param other The existing builder to copy.
    * @return A new Movie RecordBuilder
    */
-  public static com.tucows.Movie.Builder newBuilder(com.tucows.Movie.Builder other) {
+  public static com.tucows.avro.Movie.Builder newBuilder(com.tucows.avro.Movie.Builder other) {
     if (other == null) {
-      return new com.tucows.Movie.Builder();
+      return new com.tucows.avro.Movie.Builder();
     } else {
-      return new com.tucows.Movie.Builder(other);
+      return new com.tucows.avro.Movie.Builder(other);
     }
   }
 
@@ -172,11 +172,11 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * @param other The existing instance to copy.
    * @return A new Movie RecordBuilder
    */
-  public static com.tucows.Movie.Builder newBuilder(com.tucows.Movie other) {
+  public static com.tucows.avro.Movie.Builder newBuilder(com.tucows.avro.Movie other) {
     if (other == null) {
-      return new com.tucows.Movie.Builder();
+      return new com.tucows.avro.Movie.Builder();
     } else {
-      return new com.tucows.Movie.Builder(other);
+      return new com.tucows.avro.Movie.Builder(other);
     }
   }
 
@@ -199,7 +199,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.tucows.Movie.Builder other) {
+    private Builder(com.tucows.avro.Movie.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.title)) {
         this.title = data().deepCopy(fields()[0].schema(), other.title);
@@ -215,7 +215,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
      * Creates a Builder by copying an existing Movie instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.tucows.Movie other) {
+    private Builder(com.tucows.avro.Movie other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.title)) {
         this.title = data().deepCopy(fields()[0].schema(), other.title);
@@ -241,7 +241,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'title'.
       * @return This builder.
       */
-    public com.tucows.Movie.Builder setTitle(java.lang.String value) {
+    public com.tucows.avro.Movie.Builder setTitle(java.lang.String value) {
       validate(fields()[0], value);
       this.title = value;
       fieldSetFlags()[0] = true;
@@ -261,7 +261,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * Clears the value of the 'title' field.
       * @return This builder.
       */
-    public com.tucows.Movie.Builder clearTitle() {
+    public com.tucows.avro.Movie.Builder clearTitle() {
       title = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -281,7 +281,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'year'.
       * @return This builder.
       */
-    public com.tucows.Movie.Builder setYear(int value) {
+    public com.tucows.avro.Movie.Builder setYear(int value) {
       validate(fields()[1], value);
       this.year = value;
       fieldSetFlags()[1] = true;
@@ -301,7 +301,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * Clears the value of the 'year' field.
       * @return This builder.
       */
-    public com.tucows.Movie.Builder clearYear() {
+    public com.tucows.avro.Movie.Builder clearYear() {
       fieldSetFlags()[1] = false;
       return this;
     }

@@ -1,5 +1,5 @@
 {
-  "namespace": "com.tucows",
+  "namespace": "com.tucows.avro",
   "type": "record",
   "name": "Movie",
   "fields": [
