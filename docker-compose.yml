@@ -160,6 +160,7 @@ services:
   avroproducer-python:
     container_name: "avroproducer-python"
     image: "avroproducer-python:latest"
+    restart: always
     build:
       context: ./python/
       dockerfile: Dockerfile.avroproducer
@@ -175,6 +176,7 @@ services:
   avroconsumer-python:
     container_name: "avroconsumer-python"
     image: "avroconsumer-python:latest"
+    restart: always
     build:
       context: ./python/
       dockerfile: Dockerfile.avroconsumer
@@ -191,6 +193,7 @@ services:
   protobufproducer-python:
     container_name: "protobufproducer-python"
     image: "protobufproducer-python:latest"
+    restart: always
     build:
       context: ./python/
       dockerfile: Dockerfile.protobufproducer
@@ -206,6 +209,7 @@ services:
   protobufconsumer-python:
     container_name: "protobufconsumer-python"
     image: "protobufconsumer-python:latest"
+    restart: always
     build:
       context: ./python/
       dockerfile: Dockerfile.protobufconsumer
@@ -222,6 +226,7 @@ services:
   jsonproducer-python:
     container_name: "jsonproducer-python"
     image: "jsonproducer-python:latest"
+    restart: always
     build:
       context: ./python/
       dockerfile: Dockerfile.jsonproducer
@@ -237,6 +242,7 @@ services:
   jsonconsumer-python:
     container_name: "jsonconsumer-python"
     image: "jsonconsumer-python:latest"
+    restart: always
     build:
       context: ./python/
       dockerfile: Dockerfile.jsonconsumer
