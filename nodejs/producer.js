@@ -1,5 +1,7 @@
+'use strict';
 const { Kafka } = require('kafkajs')
 const { SchemaRegistry, readAVSCAsync } = require('@kafkajs/confluent-schema-registry')
+const faker = require('faker')
 
 
 const kafka = new Kafka({
@@ -17,7 +19,7 @@ async function send_message() {
   const schema = await readAVSCAsync('schemas/person.avsc')
   const { id } = await registry.register(schema)
 
-  const msgValue = { "full_name": "test" }
+  const msgValue = { "full_name": faker.name.findName() }
 
   const outgoingMessage = {
     value: await registry.encode(id,msgValue)

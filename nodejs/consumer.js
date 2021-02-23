@@ -1,3 +1,4 @@
+'use strict';
 const { Kafka } = require('kafkajs')
 const { SchemaRegistry } = require('@kafkajs/confluent-schema-registry')
 
