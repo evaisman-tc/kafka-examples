@@ -4,12 +4,12 @@ const { SchemaRegistry, readAVSCAsync } = require('@kafkajs/confluent-schema-reg
 
 const kafka = new Kafka({
   clientId: 'my-app',
-  brokers: ['localhost:9092']
+  brokers: [process.env.BROKERS]
 })
 
 const producer = kafka.producer()
 
-const registry = new SchemaRegistry({ host: 'http://localhost:8081' })
+const registry = new SchemaRegistry({ host: process.env.SCHEMA_REGISTRY_URL })
 
 async function send_message() {
   await producer.connect()

@@ -3,10 +3,10 @@ const { SchemaRegistry } = require('@kafkajs/confluent-schema-registry')
 
 const kafka = new Kafka({
   clientId: 'my-app',
-  brokers: ['localhost:9092']
+  brokers: [process.env.BROKERS]
 })
 
-const registry = new SchemaRegistry({ host: 'http://localhost:8081/' })
+const registry = new SchemaRegistry({ host: process.env.SCHEMA_REGISTRY_URL })
 
 const consumer = kafka.consumer({ groupId: 'test-group' })
 
