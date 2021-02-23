@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-kafkaschemaregistry-example",
+  "version": "1.0.0",
+  "description": "testing nodejs with kafka schema registry, avro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Edward Vaisman",
+  "license": "ISC",
+  "dependencies": {
+    "@kafkajs/confluent-schema-registry": "^1.0.6",
+    "kafkajs": "^1.15.0"
+  }
+}
