@@ -26,7 +26,7 @@ async function send_message() {
   }
 
   await producer.send({
-    topic: 'test-topic2',
+    topic: process.env.TOPIC,
     messages: [
       outgoingMessage
     ],

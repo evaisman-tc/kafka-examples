@@ -132,33 +132,33 @@ services:
   #     PORT: 9021
 
   # used to generate some test data
-  kafkacat:
-    image: confluentinc/cp-kafkacat:latest
-    restart: always
-    depends_on:
-      - kafka1
-      - zoo1
-    command:
-      - bash
-      - -c
-      - |
-        kafkacat -P -b kafka1:19092 -t json << EOF
-        {"_id":"5c4b2b45ab234c86955f0802","index":0,"guid":"d3637b06-9940-4958-9f82-639001c14c34"}
-        {"_id":"5c4b2b459ffa9bb0c0c249e1","index":1,"guid":"08612fb5-40a7-45e5-9ff2-beb89a1b2835"}
-        {"_id":"5c4b2b4545d7cbc7bf8b6e3e","index":2,"guid":"4880280a-cf8b-4884-881e-7b64ebf2afd0"}
-        {"_id":"5c4b2b45dab381e6b3024c6d","index":3,"guid":"36d04c26-0dae-4a8e-a66e-bde9b3b6a745"}
-        {"_id":"5c4b2b45d1103ce30dfe1947","index":4,"guid":"14d53f2c-def3-406f-9dfb-c29963fdc37e"}
-        {"_id":"5c4b2b45d6d3b5c51d3dacb7","index":5,"guid":"a20cfc3a-934a-4b93-9a03-008ec651b5a4"}
-        EOF
-        kafkacat -P -b kafka1:19092 -t csv << EOF
-        1,Sauncho,Attfield,sattfield0@netlog.com,Male,221.119.13.246
-        2,Luci,Harp,lharp1@wufoo.com,Female,161.14.184.150
-        3,Hanna,McQuillan,hmcquillan2@mozilla.com,Female,214.67.74.80
-        4,Melba,Lecky,mlecky3@uiuc.edu,Female,158.112.18.189
-        5,Mordecai,Hurdiss,mhurdiss4@rambler.ru,Male,175.123.45.143
-        EOF
+  # kafkacat:
+  #   image: confluentinc/cp-kafkacat:latest
+  #   restart: always
+  #   depends_on:
+  #     - kafka1
+  #     - zoo1
+  #   command:
+  #     - bash
+  #     - -c
+  #     - |
+  #       kafkacat -P -b kafka1:19092 -t json << EOF
+  #       {"_id":"5c4b2b45ab234c86955f0802","index":0,"guid":"d3637b06-9940-4958-9f82-639001c14c34"}
+  #       {"_id":"5c4b2b459ffa9bb0c0c249e1","index":1,"guid":"08612fb5-40a7-45e5-9ff2-beb89a1b2835"}
+  #       {"_id":"5c4b2b4545d7cbc7bf8b6e3e","index":2,"guid":"4880280a-cf8b-4884-881e-7b64ebf2afd0"}
+  #       {"_id":"5c4b2b45dab381e6b3024c6d","index":3,"guid":"36d04c26-0dae-4a8e-a66e-bde9b3b6a745"}
+  #       {"_id":"5c4b2b45d1103ce30dfe1947","index":4,"guid":"14d53f2c-def3-406f-9dfb-c29963fdc37e"}
+  #       {"_id":"5c4b2b45d6d3b5c51d3dacb7","index":5,"guid":"a20cfc3a-934a-4b93-9a03-008ec651b5a4"}
+  #       EOF
+  #       kafkacat -P -b kafka1:19092 -t csv << EOF
+  #       1,Sauncho,Attfield,sattfield0@netlog.com,Male,221.119.13.246
+  #       2,Luci,Harp,lharp1@wufoo.com,Female,161.14.184.150
+  #       3,Hanna,McQuillan,hmcquillan2@mozilla.com,Female,214.67.74.80
+  #       4,Melba,Lecky,mlecky3@uiuc.edu,Female,158.112.18.189
+  #       5,Mordecai,Hurdiss,mhurdiss4@rambler.ru,Male,175.123.45.143
+  #       EOF
 
-        kafkacat -b kafka1:19092 -o beginning -G json-consumer json
+  #       kafkacat -b kafka1:19092 -o beginning -G json-consumer json
 
   avroproducer-python:
     container_name: "avroproducer-python"
@@ -272,3 +272,36 @@ services:
       - schema-registry
     ports:
       - 9080:8080
+
+  avroproducer-node:
+    container_name: "avroproducer-node"
+    image: "avroproducer-node:latest"
+    restart: always
+    build:
+      context: ./nodejs/
+      dockerfile: Dockerfile.avroproducer
+    environment:
+      BROKERS: "kafka1:19092"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      TOPIC: "_kafkaclient-nodejsexample_avro"
+    depends_on:
+      - kafka1
+      - zoo1
+      - schema-registry
+
+  avroconsumer-node:
+    container_name: "avroconsumer-node"
+    image: "avroconsumer-node:latest"
+    restart: always
+    build:
+      context: ./nodejs/
+      dockerfile: Dockerfile.avroconsumer
+    environment:
+      BROKERS: "kafka1:19092"
+      SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      TOPIC: "_kafkaclient-nodejsexample_avro"
+      GROUP_ID: "nodejsexample_avro_group"
+    depends_on:
+      - kafka1
+      - zoo1
+      - schema-registry

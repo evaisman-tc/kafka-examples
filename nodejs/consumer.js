@@ -9,11 +9,11 @@ const kafka = new Kafka({
 
 const registry = new SchemaRegistry({ host: process.env.SCHEMA_REGISTRY_URL })
 
-const consumer = kafka.consumer({ groupId: 'test-group' })
+const consumer = kafka.consumer({ groupId: process.env.GROUP_ID })
 
 async function receive_messages() {
   await consumer.connect()
-  await consumer.subscribe({ topic: 'test-topic2', fromBeginning: true })
+  await consumer.subscribe({ topic: process.env.TOPIC, fromBeginning: true })
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
